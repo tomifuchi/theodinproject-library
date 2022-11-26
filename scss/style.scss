@@ -2,7 +2,7 @@
 
 
 //General reset
-h1, h2, h3, p, ul{
+h1, h2, h3, p, ul, legend, input, label{
     @extend %reset-margin-padding;
 }
 $font-size: 16px;
@@ -25,6 +25,9 @@ footer {
 }
 
 main {
+    @include grid();
+    grid-auto-flow: row;
+    gap: 30px;
     padding: 30px;
 
     background-color: rgba(255, 255, 255, 0.1);
@@ -32,7 +35,7 @@ main {
 
 //The book itself
 #book-shelf {
-    @include grid($column: repeat(auto-fit, minmax(200px, 1fr)));
+    @include grid($column: repeat(auto-fill, minmax(200px, 1fr)));
     gap: 20px;
 
     a {
@@ -52,13 +55,43 @@ main {
     box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2);
     text-align: center;
 
-    #title {
+    .title {
         font-size: 1.3rem;
         font-weight: 500;
     }
 
-    #author {
+    .author {
         font-size: 1.1rem;
         font-weight: 400;
+    }
+}
+
+.add-book {
+    @include flex($justify: center);
+}
+
+form {
+    h2 {
+        text-align: center;
+    }
+
+    .form-container {
+        @include grid($column: 1fr 1fr);
+        gap: 10px;
+    }
+    
+    p {
+        @include grid();
+        gap: 7px;
+        grid-auto-flow: row;
+    }
+
+    input {
+        width: 300px;
+    }
+
+    button {
+        width: 100%;
+        grid-column: span 2;
     }
 }

@@ -14,18 +14,37 @@ html(lang="en")
             ul#book-shelf
           
           section.add-book
-            form(action="" method="post")
-              fieldset 
-               legend Add new book
-               label(for="book_title") Title
-               input(type="text", name="book-title", id="book_title" required)
-               label(for="book_author") Author
-               input(type="text", name="book-author", id="book_author" required)
-               label(for="book_year") Year
-               input(type="text", name="book-year", id="book_year" required)
-               //For this shit to not submit
-               button(type="button" id="book_add") Add +
-
+            form(action="" method="post")#book_add_form
+               h2 Add new book
+               div.form-container
+                fieldset 
+                  legend Book informations
+                  p
+                   label(for="book_title") Title
+                   input(type="text", name="book-title", id="book_title" placeholder="Catcher in the Rye" required)
+                  p
+                   label(for="book_author") Author
+                   input(type="text", name="book-author", id="book_author" placeholder="J.D. Salinger" required)
+                  p
+                   label(for="book_year") Year
+                   input(type="year", name="book-year", id="book_year" placeholder="1951" required)
+                  p
+                   label(for="book_genre") Genre
+                   select(name="book_genre" id="book_genre" required)
+                     option(value="action") Action
+                     option(value="myster") Mystery
+                     option(value="horror") Horror
+                     option(value="adventure") Adventure
+                     option(value="crime") Crime
+                     option(value="other") Other
+                fieldset 
+                  legend Have you read this book ?
+                  p 
+                   label(for="book_is_read") Yes
+                   input(type="radio" id="book_is_read", name="book_read" value="read")
+                   label(for="book_not_read") No
+                   input(type="radio" id="book_not_read", name="book_read" value="notread" checked)
+                button(type="button" id="book_add_btn") Add +
         footer
           h3 Made by Tomifuchi, Github: Library 
 script(src="script.js") 
