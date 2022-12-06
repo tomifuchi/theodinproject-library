@@ -7,7 +7,10 @@ function Book(title, author, year, genre, read) {
     this.genre = genre; //Selected genre
     this.year = year; // Year published
     this.read = read; //Have you read the book ?
+    this.id = Book.index++;//Simple but this will do for now
 }
+
+Book.index = 0;
 
 function addBookToLibrary(title, author, year, genre, read) {
     const new_book = new Book(title, author, year, genre, read);
@@ -23,9 +26,12 @@ function addBookToLibrary(title, author, year, genre, read) {
                 h2.title Title goes here
                 h3.author Author goes here
                 p.year year goes here
+                button.remove Remove item
+                button.read Read
             */
             const list_item_link = document.createElement('a');
             list_item_link.setAttribute('href','#');
+            list_item_link.setAttribute('data-book-index',book.id);
 
             const list_item = document.createElement('li');
             list_item.classList.add('book');
@@ -60,6 +66,26 @@ function addBookToLibrary(title, author, year, genre, read) {
             year.classList.add('year');
             year.textContent = book.year;
             list_item.appendChild(year);
+
+            //child
+            const remove_button = document.createElement('button');
+            remove_button.textContent = 'Remove item';
+            remove_button.addEventListener('click', () => {
+                //As simple as it gets
+                myLibrary.splice(myLibrary.indexOf(myLibrary.filter(item => item.id == book.id)[0]), 1);
+                book_shelf.removeChild(list_item_link);
+            });
+            remove_button.classList.add('remove');
+            list_item.appendChild(remove_button);
+
+            //child
+            const read_button = document.createElement('button');
+            read_button.textContent = 'Read';
+            read_button.addEventListener('click', () => {
+                book.read = (book.read == true) ? false:true; 
+            });
+            read_button.classList.add('read');
+            list_item.appendChild(read_button);
 
             //Push to bookshelf
             book_shelf.appendChild(list_item_link);
