@@ -11,7 +11,7 @@ $font-size: 16px;
 
 body {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: calc($font-size + 0.1vw);
+    font-size: calc($font-size + 0.05vw);
 }
 
 header {
@@ -49,13 +49,23 @@ main {
 .book {
     @include flex($direction: column);
     gap: 10px;
-    padding-bottom: 20px;
+    padding: 10px;
     img {
         width: 100%;
         height: 100%;
     }
     box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.2);
     text-align: center;
+
+    .book-operation-container {
+        margin-top: auto;
+        @include flex($direction: column);
+        gap: 10px;
+
+        button {
+            padding: 7px;
+        }
+    }
 
     .title {
         font-size: 1.3rem;
@@ -68,32 +78,44 @@ main {
     }
 }
 
-.add-book {
-    @include flex($justify: center);
+.did-read{
+    position: relative;
+}
+
+.did-read::after {
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    content: 'Read ✓';
+    background-color: #fff;
+    padding: 7px;
+    box-shadow: 0 1px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 form {
+    max-width: 500px;
+    margin: 0 auto;
     h2 {
         text-align: center;
     }
 
-    .form-container {
-        @include grid($column: 1fr 1fr);
-        gap: 10px;
-    }
-    
     p {
+        margin-bottom: 10px;
         @include grid();
-        gap: 7px;
+        gap: 5px;
         grid-auto-flow: row;
     }
 
-    input {
-        width: 300px;
+    p:last-child {
+        grid-auto-flow: column;
+        justify-content: start;
+        align-items: center;
+        gap: 7px;
     }
 
     button {
+        margin-top: 10px;
+        padding: 7px;
         width: 100%;
-        grid-column: span 2;
     }
 }
