@@ -12,6 +12,8 @@ function Book(title, author, year, genre, read) {
 
 Book.index = 0;
 
+//Create a new book push to myLibrary and associate it with the DOM element
+//Create a DOM element then push to the DOM element list aswel
 function addBookToLibrary(title, author, year, genre, read) {
     const new_book = new Book(title, author, year, genre, read);
     myLibrary.push(new_book);
@@ -44,7 +46,7 @@ function addBookToLibrary(title, author, year, genre, read) {
 
             const book_cover = document.createElement('img');
             book_cover.setAttribute('src','./img/bookcover_default.png');
-            book_cover.setAttribute('alt','Book cover place holder');
+            book_cover.setAttribute('alt',`${book.title} cover place holder`);
 
             book_cover_container.appendChild(book_cover);
 
@@ -69,7 +71,8 @@ function addBookToLibrary(title, author, year, genre, read) {
 
             //child
             const remove_button = document.createElement('button');
-            remove_button.textContent = 'Remove item';
+            //This might not be a good way to do it, but this is ok I guess
+            remove_button.innerHTML= 'Remove item' + '<i class="fa-solid fa-trash-can"></i>';
             remove_button.addEventListener('click', () => {
                 //As simple as it gets
                 myLibrary.splice(myLibrary.indexOf(myLibrary.filter(item => item.id == book.id)[0]), 1);
@@ -80,7 +83,8 @@ function addBookToLibrary(title, author, year, genre, read) {
 
             //child
             const read_button = document.createElement('button');
-            read_button.textContent = 'Read';
+            //This too, might not be a good way to do it, but this is ok I guess
+            read_button.innerHTML = 'Read' + '<i class="fa-solid fa-book"></i>';
             read_button.addEventListener('click', () => {
                 book.read = (book.read == true) ? false:true; 
             });
@@ -93,6 +97,7 @@ function addBookToLibrary(title, author, year, genre, read) {
     pushToBookShelf(new_book);
 }
 
+//Book form handling
 const book_add_form = document.getElementById('book_add_form');
 const book_add_btn = document.getElementById('book_add_btn');
 book_add_btn.addEventListener('click', () => {
@@ -106,7 +111,7 @@ book_add_btn.addEventListener('click', () => {
         //If the work is unique to the library add the work
         /*
             Some idea how the title_id should comprise. Each work first to get it here
-            the work must have an id. This id consists of  author and title id
+            the work must have an id. This id consists of author and title id
             attached together
             like say
             Friedrich Neitzsche has an id of #0103
@@ -123,6 +128,23 @@ book_add_btn.addEventListener('click', () => {
             our own database of author ids, title ids. Anything put on here gets crosschecked
             with our own database then each of them will be unique. Or so I thought
             this might be flawed, but I'm just throwing out ideas that's all
+            like so
+            author_id = {
+                friedrichNeitzsche: '#0103',
+                aynRand: '#1234',
+                ...,
+            }
+
+            title_id = {
+                'thus spoke zarathustra': '#1011',
+                'the gay science': '#1253',
+                ...,
+            }
+
+            Associates the author id with title id when creating title. So that an author can
+            have duplicate name work with no probem.
+
+            Just an idea that's all.
         */
         if(!isDuplicate('')){
             addBookToLibrary(title, author, year, genre, wasRead);

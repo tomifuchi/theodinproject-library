@@ -4,7 +4,9 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
         link(rel="stylesheet", href="style.css")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css")
         title Library
     body 
         header
@@ -21,13 +23,13 @@ html(lang="en")
                   legend Book informations
                   p
                    label(for="book_title") Title
-                   input(type="text", name="book-title", id="book_title" placeholder="Catcher in the Rye" required)
+                   input(type="text", name="book_title", id="book_title" placeholder="Catcher in the Rye" required)
                   p
                    label(for="book_author") Author
-                   input(type="text", name="book-author", id="book_author" placeholder="J.D. Salinger" required)
+                   input(type="text", name="book_author", id="book_author" placeholder="J.D. Salinger" required)
                   p
                    label(for="book_year") Year
-                   input(type="date", name="book-year", id="book_year" placeholder="1951" required)
+                   input(type="date", name="book_year", id="book_year" placeholder="1951" required)
                   p
                    label(for="book_genre") Genre
                    select(name="book_genre" id="book_genre" required)
@@ -36,6 +38,7 @@ html(lang="en")
                      option(value="horror") Horror
                      option(value="adventure") Adventure
                      option(value="crime") Crime
+                     option(value="philosophy") Philosophy
                      option(value="other") Other
                 fieldset 
                   legend Have you read this book ?
