@@ -436,6 +436,10 @@ main {
   box-shadow: 0 1px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
+.add-book {
+  display: none;
+}
+
 form {
   max-width: 500px;
   margin: 0 auto;
