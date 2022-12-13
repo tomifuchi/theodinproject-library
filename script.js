@@ -8,6 +8,7 @@ const bookLibrary = (function() {
   
 
     /* Private methods */
+    /* ES5 constructor
     function _Book(title, author, year, genre, read) {
         this.title = title;
         this.author = author;
@@ -17,6 +18,23 @@ const bookLibrary = (function() {
         this.id = _Book.index++;
         this.domElement = _createItemFromTemplate(this);
         _bindItemEvents(this);
+    }
+    */
+
+    //Factory pattern
+    function _Book(title, author, year, genre, read){
+        let book = {
+            title, 
+            author, 
+            year, 
+            genre, 
+            read,
+            id: _Book.index++,
+        }
+        book.domElement = _createItemFromTemplate(book);
+        _bindItemEvents(book);
+
+        return book;
     }
     _Book.index = 0;
 
@@ -150,7 +168,7 @@ const bookLibrary = (function() {
 
     /* Public methods */
     function addBookToLibrary(title, author, year, genre, read) {
-        const new_book = new _Book(
+        const new_book = _Book(
             title || 'Unknown title', 
             author || 'John Doe',
             year || 'Unknown',
