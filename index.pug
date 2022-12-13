@@ -11,6 +11,10 @@ html(lang="en")
     body 
         header
           h1 Book selection
+          p 
+            | <code>bookLibrary</code> is the namespace to access public methods uses to add items to the library. To access
+            | press f12, then console. Public methods are: <code>addToLibrary</code>, <code>randomDate</code>, <code>getLibrary</code>.
+            | Also, <code>getLibrary</code> is returns a deep copy of the internal private myLibrary.
         main
           section.book-shelf-container
             ul#book-shelf

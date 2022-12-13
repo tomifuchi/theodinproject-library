@@ -18,6 +18,19 @@ header {
     text-align: center;
     box-shadow: 0 1px 3px 3px rgba(0, 0, 0, 0.2);
     padding: 30px;
+
+    p {
+        background-color: lightgray;
+        color: black;
+        margin: 0 auto;
+        width: 70ch;
+        padding: 40px;
+        border-radius: 3px;
+
+        code {
+            color: white;
+        }
+    }
 }
 
 footer {
@@ -90,10 +103,6 @@ main {
     background-color: #fff;
     padding: 7px;
     box-shadow: 0 1px 3px 3px rgba(0, 0, 0, 0.2);
-}
-
-.add-book {
-    display: none;
 }
 
 form {

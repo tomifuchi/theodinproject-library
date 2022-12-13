@@ -103,6 +103,7 @@ const bookLibrary = (function() {
         //Remove button 
         book.domElement.querySelector('.remove').addEventListener('click', () => {
             //As simple as it gets
+            //Filter -> Get the index of it -> Splice.
             myLibrary.splice(myLibrary.indexOf(myLibrary.filter(item => item.id == book.id)[0]), 1);
             book_shelf.removeChild(book.domElement);
         });
@@ -113,8 +114,8 @@ const bookLibrary = (function() {
         });
     }
 
-    function _pushToShelf(book) {
-        //Push to bookshelf
+    function _pushToDOM(book) {
+        //Push to DOM 
         book_shelf.appendChild(book.domElement);
     }
 
@@ -136,7 +137,7 @@ const bookLibrary = (function() {
     }));
 
     function _query_form(selector){
-        return book_add_form.querySelector(selector)[0];
+        return book_add_form.querySelector(selector);
     }
 
     function _isDuplicate(author_title_id) {
@@ -156,7 +157,8 @@ const bookLibrary = (function() {
             genre || 'Unknown',
             read || false
         );
-        _pushToShelf(new_book);
+        myLibrary.push(new_book);
+        _pushToDOM(new_book);
     }
     
     function randomDate() {
@@ -166,8 +168,15 @@ const bookLibrary = (function() {
         return `${randInt(1900, 1999)}-${randInt(1,12)}-${randInt(1,31)}`;
     }
 
+    function getLibrary() {
+        //Create deep copy so they can't share the same reference point
+        return JSON.parse(JSON.stringify(myLibrary));
+        //This is a shallow copy
+        //return myLibrary;
+    }
+
     return {
-        addBookToLibrary, randomDate
+        addBookToLibrary, randomDate, getLibrary
     };
 })();
 
