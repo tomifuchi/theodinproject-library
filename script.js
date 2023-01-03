@@ -6,17 +6,18 @@ const bookLibrary = (function() {
     const book_shelf = document.getElementById('book-shelf');
     const book_add_form = document.getElementById('book_add_form');
   
-
-    /* Private methods */
-    function _Book(title, author, year, genre, read) {
-        this.title = title;
-        this.author = author;
-        this.genre = genre; 
-        this.year = year; 
-        this.read = read; 
-        this.id = _Book.index++;
-        this.domElement = _createItemFromTemplate(this);
-        _bindItemEvents(this);
+    /*Es 6 class*/
+    class _Book {
+    	constructor (title, author, year, genre, read) {
+           this.title = title;
+           this.author = author;
+           this.genre = genre; 
+           this.year = year; 
+           this.read = read; 
+           this.id = _Book.index++;
+           this.domElement = _createItemFromTemplate(this);
+           _bindItemEvents(this);
+	}
     }
     _Book.index = 0;
 
@@ -176,22 +177,28 @@ const bookLibrary = (function() {
     }
 
     return {
-        addBookToLibrary, randomDate, getLibrary
+        addBookToLibrary, 
+	get randomDate() {
+	    return randomDate();
+	},
+	get library() {
+	    return getLibrary();
+	}
     };
 })();
 
 //Sample items
-bookLibrary.addBookToLibrary('Catcher in the Rye', 'JD Catlinger', bookLibrary.randomDate(), 'drama', true);
-bookLibrary.addBookToLibrary('Thus spoke Zarathustra', 'Friedrich Neitzsche', bookLibrary.randomDate(),'Philosophy', false);
-bookLibrary.addBookToLibrary('Intelligent Investor', 'Warrent Buffett', bookLibrary.randomDate(), 'Finance', true);
-bookLibrary.addBookToLibrary('Something', 'Someone', bookLibrary.randomDate(), 'Horror', false);
-bookLibrary.addBookToLibrary('Another', 'Someone', bookLibrary.randomDate(), 'Scifi', false);
-bookLibrary.addBookToLibrary('Catcher in the Rye', 'JD Catlinger', bookLibrary.randomDate(), 'drama', true);
-bookLibrary.addBookToLibrary('Thus spoke Zarathustra', 'Friedrich Neitzsche', bookLibrary.randomDate(),'Philosophy', false);
-bookLibrary.addBookToLibrary('Catcher in the Rye', 'JD Catlinger', bookLibrary.randomDate(), 'drama', true);
-bookLibrary.addBookToLibrary('Thus spoke Zarathustra', 'Friedrich Neitzsche', bookLibrary.randomDate(),'Philosophy', false);
-bookLibrary.addBookToLibrary('Intelligent Investor', 'Warrent Buffett', bookLibrary.randomDate(), 'Finance', true);
-bookLibrary.addBookToLibrary('Something', 'Someone', bookLibrary.randomDate(), 'Horror', false);
-bookLibrary.addBookToLibrary('Another', 'Someone', bookLibrary.randomDate(), 'Scifi', false);
-bookLibrary.addBookToLibrary('Catcher in the Rye', 'JD Catlinger', bookLibrary.randomDate(), 'drama', true);
-bookLibrary.addBookToLibrary('Thus spoke Zarathustra', 'Friedrich Neitzsche', bookLibrary.randomDate(),'Philosophy', false);
+bookLibrary.addBookToLibrary('Catcher in the Rye', 'JD Catlinger', bookLibrary.randomDate, 'drama', true);
+bookLibrary.addBookToLibrary('Thus spoke Zarathustra', 'Friedrich Neitzsche', bookLibrary.randomDate,'Philosophy', false);
+bookLibrary.addBookToLibrary('Intelligent Investor', 'Warrent Buffett', bookLibrary.randomDate, 'Finance', true);
+bookLibrary.addBookToLibrary('Something', 'Someone', bookLibrary.randomDate, 'Horror', false);
+bookLibrary.addBookToLibrary('Another', 'Someone', bookLibrary.randomDate, 'Scifi', false);
+bookLibrary.addBookToLibrary('Catcher in the Rye', 'JD Catlinger', bookLibrary.randomDate, 'drama', true);
+bookLibrary.addBookToLibrary('Thus spoke Zarathustra', 'Friedrich Neitzsche', bookLibrary.randomDate,'Philosophy', false);
+bookLibrary.addBookToLibrary('Catcher in the Rye', 'JD Catlinger', bookLibrary.randomDate, 'drama', true);
+bookLibrary.addBookToLibrary('Thus spoke Zarathustra', 'Friedrich Neitzsche', bookLibrary.randomDate,'Philosophy', false);
+bookLibrary.addBookToLibrary('Intelligent Investor', 'Warrent Buffett', bookLibrary.randomDate, 'Finance', true);
+bookLibrary.addBookToLibrary('Something', 'Someone', bookLibrary.randomDate, 'Horror', false);
+bookLibrary.addBookToLibrary('Another', 'Someone', bookLibrary.randomDate, 'Scifi', false);
+bookLibrary.addBookToLibrary('Catcher in the Rye', 'JD Catlinger', bookLibrary.randomDate, 'drama', true);
+bookLibrary.addBookToLibrary('Thus spoke Zarathustra', 'Friedrich Neitzsche', bookLibrary.randomDate,'Philosophy', false);
